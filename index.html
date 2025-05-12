@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>The Dark Alleyway 🖤</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.min.css">
+  <script type="module" src="main.js"></script>
+  <style>
+    body { background-color: #000; color: #fff; }
+    #logoutBtn, #rankDerankForm, #staffSection, #adminControls, #logViewer { display: none; }
+    .logged-in #logoutBtn, .logged-in #staffSection { display: block; }
+    .rank-permitted #rankDerankForm { display: block; }
+    .admin #adminControls, .admin #logViewer { display: block; }
+    .logged-in #loginSection { display: none; }
+  </style>
+</head>
+<body>
+  <nav class="container-fluid">
+    <ul>
+      <li><strong>The Dark Alleyway 🖤</strong></li>
+    </ul>
+    <ul>
+      <li><a href="#staff">Staff</a></li>
+      <li><a href="#log">Rank/Derank</a></li>
+      <li><a href="#" role="button" onclick="logoutUser()" id="logoutBtn">Logout</a></li>
+    </ul>
+  </nav>
+
+  <main class="container" id="mainContainer">
+    <section id="loginSection">
+      <hgroup>
+        <h2>Staff Login</h2>
+        <h3>Dark Alleyway Staff Only 🖤</h3>
+      </hgroup>
+      <form onsubmit="event.preventDefault(); loginUser();">
+        <input type="text" id="loginName" placeholder="Full Name" required />
+        <input type="password" id="loginPass" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+    </section>
+
+    <section id="adminControls">
+      <hgroup>
+        <h2>Add Staff (Reuben Only)</h2>
+      </hgroup>
+      <form onsubmit="event.preventDefault(); addUser();">
+        <input type="text" id="newUserName" placeholder="Full Name" required />
+        <input type="password" id="newUserPass" placeholder="Password" required />
+        <select id="newUserRole" required>
+          <option value="">Select Role</option>
+          <option>Trainee 🌱</option>
+          <option>Junior Staff 🧑‍💼</option>
+          <option>Senior Staff 🌟</option>
+          <option>Supervisor 👨‍🏫</option>
+          <option>Assistant Manager 💼</option>
+          <option>Store Manager 🏢</option>
+          <option>Regional Manager 🗺️</option>
+          <option>Director of Operations ⚙️</option>
+          <option>Vice President 🛡️</option>
+          <option>President 🏛️</option>
+          <option>General Counsel ⚖️</option>
+          <option>Co-Owner 🤝👑</option>
+          <option>Owner 👑</option>
+        </select>
+        <button type="submit">Add Staff</button>
+      </form>
+    </section>
+
+    <section id="staffSection">
+      <hgroup>
+        <h2>Staff Members</h2>
+        <h3>By Reuben Hantsche</h3>
+      </hgroup>
+      <ul id="staffList">
+        <li>Reuben Hantsche ➡️ Owner 👑</li>
+        <li>Daltyn Zantuck ➡️ President 🏛️</li>
+        <li>Zane Kay ➡️ General Counsel ⚖️</li>
+        <li>Cody Segelow ➡️ Senior Staff 🌟</li>
+      </ul>
+    </section>
+
+    <section id="rankDerankForm">
+      <hgroup>
+        <h2>Rank/Derank Log</h2>
+        <h3>Executives and Owners Only</h3>
+      </hgroup>
+      <form class="grid" onsubmit="event.preventDefault(); submitRankLog();">
+        <input type="text" id="rankTarget" placeholder="Target Username" required />
+        <select id="rankAction" required>
+          <option value="">Action</option>
+          <option>Rank</option>
+          <option>Derank</option>
+        </select>
+        <select id="rankRole" required>
+          <option value="">Select Role</option>
+          <option>Trainee 🌱</option>
+          <option>Junior Staff 🧑‍💼</option>
+          <option>Senior Staff 🌟</option>
+          <option>Supervisor 👨‍🏫</option>
+          <option>Assistant Manager 💼</option>
+          <option>Store Manager 🏢</option>
+          <option>Regional Manager 🗺️</option>
+          <option>Director of Operations ⚙️</option>
+          <option>Vice President 🛡️</option>
+          <option>President 🏛️</option>
+          <option>General Counsel ⚖️</option>
+          <option>Co-Owner 🤝👑</option>
+          <option>Owner 👑</option>
+        </select>
+        <textarea id="rankReason" placeholder="Reason" required></textarea>
+        <button type="submit">Submit</button>
+      </form>
+    </section>
+
+    <section id="logViewer">
+      <hgroup>
+        <h2>📄 Rank/Derank Logs</h2>
+        <h3>Visible to Reuben Only</h3>
+      </hgroup>
+      <ul id="logList"></ul>
+    </section>
+  </main>
+
+  <footer class="container">
+    <small><a href="#">Privacy</a> • <a href="#">Terms</a></small>
+  </footer>
+</body>
+</html>
